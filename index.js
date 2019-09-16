@@ -31,6 +31,9 @@ server.post('/api/register', (req, res) => {
 server.post('/api/login', (req, res) => {
   let { username, password } = req.body;
 
+  const hash = bcrypt.hashSync(password, 14)
+  cbrypt.compareSync(password, hash)
+
   Users.findBy({ username })
     .first()
     .then(user => {
